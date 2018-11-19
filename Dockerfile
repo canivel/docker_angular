@@ -9,4 +9,5 @@ RUN ng build
 
 #Stage 2: nginx phase
 FROM nginx
+EXPOSE 80
 COPY --from=builder /app/dist/* /usr/share/nginx/html
