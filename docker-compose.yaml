@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4200:4200"
+    volumes:
+      - /app/node_modules
+      - .:/app
+  web-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "9876:9876"
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: "ng test --watch false"
+
+  
