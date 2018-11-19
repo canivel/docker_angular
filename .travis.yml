@@ -6,4 +6,17 @@ before_install:
   - docker build -t canivel/docker_angular -f Dockerfile.dev .
 
 script:
-  - docker run canivel/docker_angular ng test --code-coverage
+  - docker run canivel/docker_angular ng test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker_angular"
+  env: "DockerAngular-env"
+  bucket_name: "elasticbeanstalk-us-east-1-325274068097"
+  bucket_path: "docker_angular"
+  on:
+    branch: master
+  acces_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
