@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t canivel/docker_angular -f Dockerfile.dev .
+
+script:
+  - docker run canivel/docker_angular ng test -- --coverage
